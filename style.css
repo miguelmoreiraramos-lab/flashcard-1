@@ -8,25 +8,32 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #eeea0c;
+    background-color: #121212; /* Fundo preto escuro/moderno */
     font-family: Arial, sans-serif;
 }
 
 .cabecalho {
-    padding: 15px 25px;
+    padding: 20px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #a5e70c;
+    background-color: #4b0082; /* Roxo Indigo */
+    border-bottom: 2px solid #000000;
 }
 
 .cabecalho-link {
-    color: #0b0b0b;
+    color: #ffffff;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.cabecalho-link:hover {
+    color: #da70d6; /* Roxo claro ao passar o mouse */
 }
 
 h1 {
-    color: #0d0d0d;
+    color: #ffffff;
     font-size: 24px;
 }
 
@@ -35,22 +42,30 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
 main h2 {
-    margin-bottom: 30px;
-    color: #0d0d0d;
+    margin-bottom: 35px;
+    color: #ffffff; /* Texto claro sobre o fundo preto */
     text-align: center;
+    padding: 0 20px;
+    font-size: 20px;
 }
 
 footer {
-    background-color: #a5e70c;
-    padding: 15px 25px;
-    color: #0b0b0b;
+    background-color: #1a1a1a; /* Preto acinzentado */
+    border-top: 3px solid #4b0082; /* Detalhe em roxo */
+    padding: 20px 25px;
+    color: #b3b3b3;
     text-align: center;
 }
 
+footer h1 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
 
 section {
     display: flex;
@@ -62,9 +77,10 @@ section {
     padding: 0 20px;
 }
 
+/* --- CONFIGURAÇÃO DOS CARTÕES 3D --- */
 .cartao {
     width: 280px;
-    height: 360px;
+    height: 320px; /* Reduzido levemente já que não tem mais imagem */
     position: relative;
     perspective: 1000px;
 }
@@ -88,39 +104,74 @@ section {
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(16, 15, 15, 0.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
     backface-visibility: hidden;
-    background-color: #afe6e7;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding: 20px;
 }
 
+/* Lado da Frente: Roxo */
+.cartao-frente {
+    background-color: #311b92; /* Roxo escuro profundo */
+    border: 2px solid #4b0082;
+}
+
+/* Lado do Verso: Preto com borda Roxa */
 .cartao-verso {
     transform: rotateY(180deg);
+    background-color: #1a1a1a; 
+    border: 2px solid #4b0082;
 }
 
-.cartao-imagem {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
+/* Estilização e Centralização Perfeita dos Textos */
 .cartao-frente p, .cartao-verso p {
-    padding: 16px;
     font-size: 14px;
-    line-height: 1.5;
-    color: #333;
+    line-height: 1.6;
+    color: #ffffff; /* Todos os textos em branco para contraste */
     text-align: center;
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Centraliza verticalmente no bloco */
 }
 
+/* Destaque para as perguntas da frente */
+.cartao-frente .pergunta {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Cor de destaque para as palavras MITO e VERDADE */
+.cartao-verso p strong {
+    font-size: 18px;
+    color: #da70d6; /* Roxo brilhante para destacar a resposta */
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Rolagem interna caso o texto do verso fique grande em telas pequenas */
+.cartao-verso p {
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Customização sutil da barra de rolagem do verso */
+.cartao-verso p::-webkit-scrollbar {
+    width: 4px;
+}
+.cartao-verso p::-webkit-scrollbar-thumb {
+    background: #4b0082;
+    border-radius: 4px;
+}
+
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 1200px) {
     section {
-        max-width: 600px; /* 2 x 280px + 1 gap x 24px */
+        max-width: 600px; 
     }
 }
 
@@ -132,10 +183,6 @@ section {
     
     .cartao {
         width: 100%;
-        height: 340px;
-    }
-    
-    .cartao-imagem {
-        height: 180px;
+        height: 300px;
     }
 }
